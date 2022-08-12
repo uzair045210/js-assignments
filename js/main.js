@@ -9,17 +9,27 @@ function validatePassword() {
     lengthError.style.display = 'none';
     letterError.style.display = 'none';
     numberError.style.display = 'none';
+    let isTrue = false;
     var password = passwordField.value.toLowerCase();
     var email = emailField.value.toLowerCase();
-    if (password.length < passLength) {
-        lengthError.style.display = 'inline';
-        if (!hasLetters(password))
+    if (!isTrue) {
+        if (password.length < passLength) {
+            lengthError.style.display = 'inline';
+            passwordField.style.borderColor = 'red';
+            isTrue = true;
+        }
+        if (!hasLetters(password)) {
             letterError.style.display = 'inline';
-            if (!hasNumbers(password))
-                numberError.style.display = 'inline';
-        passwordField.style.borderColor = 'red';
+            passwordField.style.borderColor = 'red';
+            isTrue = true;
+        }
+        if (!hasNumbers(password)) {
+            numberError.style.display = 'inline';
+            passwordField.style.borderColor = 'red';
+            isTrue = true;
+        }
     }
-    else
+    if (!isTrue)
         passwordField.style.borderColor = 'green';
     if (!isEmail(email))
         emailField.style.borderColor = 'red';
